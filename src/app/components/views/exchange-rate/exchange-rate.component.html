@@ -1,0 +1,101 @@
+<mat-divider style="margin-top: 2rem"></mat-divider>
+<h1 class="title">BRL Exchange Rate</h1>
+<form fxLayout="row" fxLayoutAlign="space-around center">
+  <mat-form-field class="example-form-field" appearance="fill" fxFlex="50">
+    <mat-label>Enter the currency code</mat-label>
+    <input matInput [(ngModel)]="currentExchange.fromSymbol" name="fromSymbol">
+  </mat-form-field>
+</form>
+<div fxLayout="row" fxLayoutAlign="space-around center" style="margin-bottom: 2rem">
+  <button mat-raised-button fxFlex="20" (click)="getCurrentExchange()">Exchange result</button>
+</div>
+
+<div fxLayout.xs="column" fxLayout.sm="column" fxLayout="column" fxLayoutGap="10px" class="dados-card"> 
+<mat-card>
+  <div fxLayout.xs="column" fxLayout.sm="column" fxLayout="row" fxLayoutGap="10px" class="dados-card">
+    <div fxFlex="30">
+      <div>
+        <span class="text-rate">Exchange rate now</span>
+      </div>
+      <div>
+        <span>{{this.currentExchange.lastUpdatedAt | date : 'dd/MM/yyyy HH:mm'}}</span>
+      </div>
+    </div>
+
+    <div fxFlex="50">
+      <div class="result">
+        <span>{{this.currentExchange.exchangeRate | currency: 'BRL'}}</span>
+      </div>
+    </div>
+  </div>
+</mat-card>
+</div>
+
+<!-- <div fxLayout.xs="column" fxLayout.sm="column" fxLayout="row" fxLayoutGap="10px" class="dados-card-last">  -->
+  <mat-accordion class="dados-card-last">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-rate ">
+          LAST 30 DAYS
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card *ngFor="let dataDailyGeneral of this.dataDailyGeneral;  let i = index">
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 20px">
+              <div fxLayout="column" fxFlex="0 0 47%">
+                      <span class="text-last-date">{{dataDailyGeneral.date | date : 'dd/MM/yyyy HH:mm'}}</span> 
+              </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 20px">
+              <div fxLayout="column" fxFlex="0 0 7%">
+                      <span class="text-last-content">Open:</span> 
+              </div>
+              <div fxLayout="column" fxFlex="0 0 30%">
+                      <span class="text-last-result">{{dataDailyGeneral.open}}</span> 
+              </div>
+
+              <div fxLayout="column" fxFlex="0 0 7%">
+                      <span class="text-last-content">Hight:</span> 
+              </div>
+              <div fxLayout="column" fxFlex="0 0 47%">
+                      <span class="text-last-result">{{dataDailyGeneral.high}}</span> 
+              </div>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between" style="margin-bottom: 20px">
+              <div fxLayout="column" fxFlex="0 0 7%">
+                      <span class="text-last-content">Close:</span> 
+              </div>
+              <div fxLayout="column" fxFlex="0 0 30%">
+                      <span class="text-last-result">{{dataDailyGeneral.close}}</span> 
+              </div>
+
+              <div fxLayout="column" fxFlex="0 0 7%">
+                      <span class="text-last-content">LOw:</span> 
+              </div>
+              <div fxLayout="column" fxFlex="0 0 47%">
+                      <span class="text-last-result">{{dataDailyGeneral.low}}</span> 
+              </div>
+          </div>
+        </mat-card-content>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="space-between" *ngFor="let resultDiff of this.totalDiff | keyvalue;  let i = index;">
+            <div fxLayout="column" fxFlex="0 0 15%">
+                    <span class="text-last-content">close diff (%):</span> 
+            </div>
+            <div fxLayout="column" fxFlex="0 0 85%">
+              <span class="text-last-result">{{resultDiff.value}}</span> 
+              <div fxLayout="column" fxFlex="80% 0 5%">
+                <i class="material-icons" style="margin: -19px 0 0px 60px;">
+                  expand_more
+                </i>
+              </div>
+            </div>
+        </div>
+        </mat-card-content>
+      </mat-card>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- </div> -->
+
