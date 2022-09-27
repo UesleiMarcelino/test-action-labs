@@ -1,3 +1,11 @@
+# Descrição
+
+O projeto é baseado em um sistema de conversão da moeda Real (R$) em outras moedas. 
+
+Alem de mostrar o valor em tempo real, mostra a abertura e fechamento da moeda alem de calcular a diferença do dia atual com o dia anterior.
+
+Projeto criado a partir do Angular 12, com componentes do Material Angula e Responsividade com FLexLayout.
+
 # TestExchange
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
